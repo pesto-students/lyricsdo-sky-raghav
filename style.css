@@ -45,8 +45,18 @@ header {
   background: var(--bggradient);
 }
 
-header .container .col-md-8 {
+header .container {
   font-family: "Rubik", sans-serif;
+}
+
+header .suggestions {
+  display: block;
+  overflow: hidden;
+  background: white;
+}
+
+header li:hover {
+  background: #6c757d;
 }
 
 .primary-btn {
