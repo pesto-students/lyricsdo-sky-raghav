@@ -8,17 +8,19 @@ let fetchSuggestions = (event) => {
     fetch('https://api.lyrics.ovh/suggest/' + value)
     .then(response => response.json())
     .then(json => {
-      suggestionsElement.innerHTML = '';
-      json.data.forEach((item) =>{
-        let option = document.createElement('li');
-        option.classname += ' list-group-item';
-        option.innerHTML= `${item.artist.name}-${item.album.title}`;
-        suggestionsElement.appendChild(option);
-      })
+      suggestionsElement.textContent = '';
+      if(json.data.length){
+        json.data.forEach((item) =>{
+          let option = document.createElement('li');
+          option.classname += ' list-group-item';
+          option.innerHTML= `${item.artist.name}-${item.album.title}`;
+          if(searchBar.value) suggestionsElement.appendChild(option);
+        })
+      }
     })
-    .catch((err) => { suggestionsElement.innerHTML = 'Couldn\'t load suggetions'});
+    .catch((err) => { suggestionsElement.textContent = 'Couldn\'t load suggetions'});
   } else{
-    suggestionsElement.innerHTML = '';
+    suggestionsElement.textContent = '';
   }
 };
 
